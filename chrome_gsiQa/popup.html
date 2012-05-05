@@ -1,0 +1,211 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<style>
+body {
+  margin: 0px;
+  background: url('images/bg.png') repeat-y -6px 0px;
+  font-family: Trebuchet MS, Arial, Verdana;
+  font-size: 13px;
+  color: #333333;
+  width: 390px;
+}
+ul{
+  padding-left: 5px;
+  list-style-position: inside;
+}
+#avatar{
+  float: left;
+  width: 100px;
+  height: 116px;
+  margin: 10px;
+}
+#msg_dialog{
+  position: fixed; 
+  bottom:45px;
+  left:5px;
+  background: #444444;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 5px;
+  opacity: 0.9;
+  display: none;
+}
+#msg_dialog_old{
+  position: fixed; 
+  top:5px;
+  left:5px;
+  background: url('images/bg_shadow.png') repeat 0 0;
+  padding: 4px 12px;
+  border-radius: 5px;
+  border-width: 0 1px 1px 0;
+  border-color: #999;
+  border-style: solid;
+  text-shadow: 1px 1px 1px #ccc;
+  display: none;
+}
+
+#screen{
+  margin-bottom: 5px;
+}
+#dialog{
+  padding-top: 5px;
+  margin-left: 130px;
+  width: 250px;
+  height: 210px; /* tamanno exacto de cuatro bocadilos monolineales */
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#dialog #navbar{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 110px;
+  background: url('images/bg_shadow.png') repeat;
+  padding: 2px 6px 5px 6px;
+  border-radius: 0 0 5px 5px;
+  border-width: 0 1px 1px 0;
+  border-color: #999999;
+  border-style: solid;
+}
+#dialog #navbar button{
+  margin: 0px;
+  padding: 1px;
+}
+#dialog #navbar button img{
+  height: 20px;
+  width: 23px;
+  background: url('images/sprite_black2.png') no-repeat;
+}
+#dialog #navbar button#prev img{
+  background-position:-61px 0px;
+}
+#dialog #navbar button#next img{
+  background-position:-82px 0px;
+}
+#dialog #navbar button + button{
+  margin-left: -3px;
+}
+img.icon{
+  width: 40px;
+  float: left;
+}
+img + ul{
+  margin-left: 50px;
+}
+
+
+table.bot_balloon, table.user_balloon, table.load_bot_balloon{
+  border-spacing: 0px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.bot_balloon, table.load_bot_balloon{
+  clear: right;
+}
+
+table.user_balloon{
+  float: right;
+  margin-right: 6px;
+  clear: right; /* para evitar que se apilen varios seguidos */
+}
+.bot_balloon .topleft, .load_bot_balloon .topleft{
+  background: url('images/balloon_blue_top.png') no-repeat 0 0;
+  height: 10px;
+  width: 20px;
+}
+.bot_balloon .topright, .load_bot_balloon .topright{
+  background: url('images/balloon_blue_top.png') no-repeat 100% 0;
+}
+.bot_balloon .bottomleft, .load_bot_balloon .bottomleft{
+  background: url('images/balloon_blue_bottom.png') no-repeat 0 100%;
+}
+.bot_balloon .bottomright, .load_bot_balloon .bottomright{
+  padding: 0px 20px 15px 5px;
+  background: url('images/balloon_blue_bottom.png') no-repeat 100% 100%;
+  min-height: 24px;
+}
+
+
+.user_balloon .topleft{
+  background: url('images/balloon_gray_top.png') no-repeat 0 0;
+  height: 10px;
+  width: 15px;
+}
+.user_balloon .topright{
+  background: url('images/balloon_gray_top.png') no-repeat 100% 0;
+}
+.user_balloon .bottomleft{
+  background: url('images/balloon_gray_bottom.png') no-repeat 0 100%;
+}
+.user_balloon .bottomright{
+  padding: 0px 25px 15px 0px;
+  background: url('images/balloon_gray_bottom.png') no-repeat 100% 100%;
+  min-height: 24px;
+}
+
+#userbar form{
+  margin-bottom: 0px;
+}
+#userbar{
+  /*margin: 3px 8px;*/
+  background: url('images/bg_shadow.png') repeat 0 0;
+  padding: 5px 8px;
+  width: 375px;
+
+  position: absolute;
+  bottom: 0px;
+}
+#userbar input[type=text]{
+  padding: 4px 6px;
+  width: 305px;
+}
+#userbar input[type=submit]{
+  padding: 4px 10px;
+}
+#padding{
+  height: 43px;
+  width: 100px;
+  clear: both;
+}
+::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+}
+.clear{ clear: both;}
+</style>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="js/jquery.jsmovie.1.4.1.js"></script>
+<script type="text/javascript" src="js/content_script.js"></script>
+
+<body>
+    <div id="msg_dialog"></div>
+    <div id="screen">
+        <div id="sidebar">
+            <div id="avatar">
+            </div>
+        </div>
+        <div id="dialog">
+            <div id="navbar">
+                <button id="prev"><img src="images/cleardot.gif" /></button>
+                <button id="next"><img src="images/cleardot.gif" /></button>
+            </div>
+            <table class="bot_balloon">
+                <tr><td class="topleft"></td><td class="topright"></td></tr>
+                <tr><td class="bottomleft"></td><td class="bottomright">Hola, soy Nico. Sé algunas cosas ¡Vamos pregúntame algo!</td></tr>
+            </table>
+            <div id="padding"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div id="userbar">    
+        <form id="userinput" method="get" action="http://lab.gsi.dit.upm.es/gsiBot/TalkToBot" >
+          <input type="hidden" name="userAgent" value="chrome_ext_v1" />
+          <input type="hidden" name="bot" value="Erika" />
+          <input type="text" name="q" />
+          <input type="submit" name="submit" value="Enviar" />
+        </form>
+    </div>
+</body>

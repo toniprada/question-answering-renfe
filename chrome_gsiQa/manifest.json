@@ -1,0 +1,16 @@
+{
+  "name": "gsiQA",
+  "version": "1.0",
+  "description": "Interface for the gsiQA",
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "popup": "popup.html"
+  },
+  "permissions": [
+    "http://localhost:8000/qasystem"
+  ],
+  "content_scripts": [{
+    "matches": ["http://*/*"],
+    "js": ["js/jquery.js", "js/jquery.scrollTo.js", "js/content_script.js"]
+  }]
+}

@@ -1,0 +1,81 @@
+body {
+  min-width:357px;
+  overflow-x:hidden;
+  font-family: Trebuchet MS, Arial, Verdana;
+  font-size: 13px;
+  color: #333333;
+  /*margin: 0px;*/
+}
+
+img#avatar {
+  float: left;
+  margin:5px;
+  vertical-align:middle;
+  width:100px;
+}
+#screen{
+  padding: 5px 0;
+  /*margin: 8px 8px 0 8px;*/
+  margin-bottom: 5px;
+}
+table.bot_balloon, table.user_balloon{
+  border-spacing: 0px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+table.bot_balloon{
+  clear: right;
+}
+
+table.user_balloon{
+  float: right;
+  margin-right: 6px;
+}
+.bot_balloon .topleft{
+  background: url('images/balloon_blue_top.png') no-repeat 0 0;
+  height: 10px;
+  width: 20px;
+}
+.bot_balloon .topright{
+  background: url('images/balloon_blue_top.png') no-repeat 100% 0;
+}
+.bot_balloon .bottomleft{
+  background: url('images/balloon_blue_bottom.png') no-repeat 0 100%;
+}
+.bot_balloon .bottomright{
+  padding: 0px 20px 15px 5px;
+  background: url('images/balloon_blue_bottom.png') no-repeat 100% 100%;
+  min-height: 24px;
+}
+
+.user_balloon .topleft{
+  background: url('images/balloon_gray_top.png') no-repeat 0 0;
+  height: 10px;
+  width: 15px;
+}
+.user_balloon .topright{
+  background: url('images/balloon_gray_top.png') no-repeat 100% 0;
+}
+.user_balloon .bottomleft{
+  background: url('images/balloon_gray_bottom.png') no-repeat 0 100%;
+}
+.user_balloon .bottomright{
+  padding: 0px 25px 15px 0px;
+  background: url('images/balloon_gray_bottom.png') no-repeat 100% 100%;
+  min-height: 24px;
+}
+
+#userbar{
+  /*margin: 3px 8px;*/
+  background: url('images/bg_shadow.png') repeat 0 0;
+  padding: 5px 8px;
+  margin: -8px;
+  height: 32px;
+  width: 380px;
+}
+#userbar form{
+  margin-bottom: 0px;
+}
+#userbar input[type=text]{
+  padding: 4px 6px;
+}

@@ -20,11 +20,7 @@
 
 /* Plans */
 
-@demo_find
-+!demo_find :true
-	<- 	findTravel(12345, madrid, barcelona, 9, 5, 2012);
-		.at("now +1 second", "+!tell_user").
-
+@find
 +!find(From, To, when(D, M, Y), People) :true
 	<- 	findTravel(12345, From, To, D, M, Y);
 		.at("now +1 second", "+!tell_user").
@@ -41,8 +37,8 @@
 +!tell_user : true 
 	<- 	.findall(journey(fare(FPrice, FName), From, To, Departure, Arrival), 
 			journey(From, To, Departure, Arrival, fare(FName, FPrice)), L);
-		.min(L, journey(fare(FPriceMin, FNameMin), FromMin, ToMin, DepartureMin, ArrivalMin));
 		L \== []; // at least one journey
+		.min(L, journey(fare(FPriceMin, FNameMin), FromMin, ToMin, DepartureMin, ArrivalMin));
 		.print("Min fare ", FNameMin, " with price " , FPriceMin);
 		.send(userAgent, achieve, tell_user(journey(FromMin, ToMin, DepartureMin, ArrivalMin, fare(FNameMin, FPriceMin)))).
 		

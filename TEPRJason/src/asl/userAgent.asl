@@ -44,3 +44,12 @@ queryId(0).
 	
 +!ask_to : true
 	<- sendUser("&#191;Hacia donde desea ir?").
+	
++!ask_day : true
+	<- sendUser("&#191;Que dia del mes desea partir? (Escribalo con numeros)").
+	
++!ask_month : true
+	<- sendUser("&#191;En que mes desea partir?").
+	
++!ask_year : true
+	<- sendUser("&#191;En que a&ntilde;o desea partir?").

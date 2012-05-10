@@ -44,14 +44,46 @@
 		.concat("hacia ",Msg,X);
 		!nlu(X, Queryid).
 		
++!find_travel : not day(_)
+	<- 	.print("Unknown day");
+		?expecting(day);
+		.print("We asked before, maybe the user answered directly");
+		-expecting(day);
+		?msg(Msg, Queryid);
+		.concat("el dia ",Msg,X);
+		!nlu(X, Queryid).
+		
++!find_travel : not month(_)
+	<- 	.print("Unknown month");
+		?expecting(month);
+		.print("We asked before, maybe the user answered directly");
+		-expecting(month);
+		?msg(Msg, Queryid);
+		.concat("del mes ",Msg,X);
+		!nlu(X, Queryid).
+		
++!find_travel : not year(_)
+	<- 	.print("Unknown year");
+		?expecting(year);
+		.print("We asked before, maybe the user answered directly");
+		-expecting(year);
+		?msg(Msg, Queryid);
+		.concat("del",Msg,X);
+		!nlu(X, Queryid).
+		
 +!find_travel : true
 	<-	?location_from(From); 
 		?location_to(To);
-		//?people(People);
 		?day(Day);
-		.send(travelAgent, achieve, find(From, To, when(Day, 5, 2012), 1));
+		?month(Month);
+		?year(Year);
+		//?people(People);
+		.send(travelAgent, achieve, find(From, To, when(Day, Month, Year), 1));
 		-location_from(_);
 		-location_to(_);
+		-day(_);
+		-month(_);
+		-year(_);
 		-expecting(_);
 		-msg(_).
 
@@ -68,6 +100,27 @@
 	<-	.print("Asking the arrival location");
 		.send(userAgent, achieve, ask_to);
 		+expecting(to);
+		-msg(_);
+		.fail.
+		
++?expecting(day) : true 
+	<-	.print("Asking the day");
+		.send(userAgent, achieve, ask_day);
+		+expecting(day);
+		-msg(_);
+		.fail.
+		
++?expecting(month) : true 
+	<-	.print("Asking the month");
+		.send(userAgent, achieve, ask_month);
+		+expecting(month);
+		-msg(_);
+		.fail.
+		
++?expecting(year) : true 
+	<-	.print("Asking the year");
+		.send(userAgent, achieve, ask_year);
+		+expecting(year);
 		-msg(_);
 		.fail.
 		
@@ -88,4 +141,13 @@
 +day(Day) : true
 	<- 	.print("day: ", Day);
 		+day(Day).	
+		
++month(Month) : true
+	<- 	.print("month: ", Month);
+		+month(Month).	
+		
++year(Year) : true
+	<- 	.print("year: ", Year);
+		+year(Year).
+
 

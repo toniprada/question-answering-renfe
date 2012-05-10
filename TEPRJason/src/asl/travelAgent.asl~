@@ -23,11 +23,11 @@
 @demo_find
 +!demo_find :true
 	<- 	findTravel(12345, madrid, barcelona, 9, 5, 2012);
-		.at("now +2 second", "+!tell_user").
+		.at("now +1 second", "+!tell_user").
 
 +!find(From, To, when(D, M, Y), People) :true
 	<- 	findTravel(12345, From, To, D, M, Y);
-		.at("now +2 second", "+!tell_user").
+		.at("now +1 second", "+!tell_user").
 		
 /* Store results */
 @storejourney1
@@ -43,8 +43,8 @@
 			journey(From, To, Departure, Arrival, fare(FName, FPrice)), L);
 		.min(L, journey(fare(FPriceMin, FNameMin), FromMin, ToMin, DepartureMin, ArrivalMin));
 		L \== []; // at least one journey
-		.print("Min fare ", FNameMin, " with price " , FNameMin);
-		.send(userAgent, tell, journey(FromMin, ToMin, DepartureMin, ArrivalMin, fare(FNameMin, FPriceMin))).
+		.print("Min fare ", FNameMin, " with price " , FPriceMin);
+		.send(userAgent, achieve, tell_user(journey(FromMin, ToMin, DepartureMin, ArrivalMin, fare(FNameMin, FPriceMin)))).
 		
 		
 -!tell_user : true 
